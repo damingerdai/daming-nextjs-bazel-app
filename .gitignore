@@ -34,3 +34,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# bazel
+bazel-bin
+bazel-daming-nextjs-bazel-app
+bazel-out
+bazel-testlogs
+
+# output
+dist/

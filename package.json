@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "bazel:dev": "ibazel run //:dev",
+    "bazel:build": "ibazel build //:build",
+    "bazel:start": "ibazel run //:start"
   },
   "dependencies": {
     "@types/node": "18.11.10",
@@ -18,5 +21,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.3"
+  },
+  "devDependencies": {
+    "@bazel/bazelisk": "^1.12.1",
+    "@bazel/buildifier": "^5.1.0",
+    "@bazel/ibazel": "^0.16.2",
+    "@bazel/typescript": "^5.7.2"
   }
 }

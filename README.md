@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# daming-nextjs-bazel-app
 
-## Getting Started
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and support [Bazel](https://bazelbuild.github.io/rules_nodejs/).
 
-First, run the development server:
+## Get started
+
+use yarn
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn build (next build)
+yarn start (next start)
+yarn dev (next dev)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+use bazel
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn bazel:build (ibazel run //:build)
+yarn bazel:start (ibazel run //:start)
+yarn bazel:dev (ibazel run //:dev)
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Questions
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+fail to use bazel run `next start` command
 
-## Learn More
+## Reference
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. [Bazel + next.js example](https://github.com/aspect-build/bazel-examples/tree/main/next.js)
+2. [feat(examples) demonstrate building nextjs app](https://github.com/bazelbuild/rules_nodejs/pull/3297)
+3. [bazel-next-typescript-monorepo](https://github.com/anthanh/bazel-next-typescript-monorepo)
+4. [nextjs-bazel](https://github.com/flolu/nextjs-bazel)

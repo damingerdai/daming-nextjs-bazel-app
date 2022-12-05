@@ -1,0 +1,89 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@npm//next:index.bzl", "next")
+
+filegroup(
+    name = "config",
+    srcs = [
+       ".eslintrc.json",
+        "next.config.js",
+        "next-env.d.ts",
+        "package.json",
+        "tsconfig.json",
+        "yarn.lock",
+    ],
+)
+
+filegroup(
+    name = "sources",
+    srcs = glob(["pages/*.tsx", "styles/*.css"]),
+)
+
+filegroup(
+    name = "static",
+    srcs = glob(["public/*.ico", "public/*.svg"]),
+)
+
+filegroup(
+    name = "app",
+    srcs = [
+        ":config",
+        ":sources",
+    ],
+)
+
+filegroup(
+    name = "dot-next",
+    srcs = glob([
+        ".next/*",
+    ]),
+)
+
+next(
+    name = "build",
+    args = [
+        "build",
+    ],
+    data =
+    [
+        ":app",
+        ":dot-next",
+        "@npm//:node_modules",
+    ],
+    output_dir = True,
+)
+
+next(
+    name = "start",
+    args = [
+        "start -p 8090",
+        "--node_options=--preserve-symlinks-main",
+    ],
+    data = [
+        ":build",
+        ":app",
+        ":dot-next",
+        "@npm//:node_modules",
+    ],
+    tags = [
+        "manual",
+        # Tell ibazel not to restart the devserver when its deps change.
+        "ibazel_notify_changes",
+        # Tell ibazel to serve the live reload script, since we expect a browser will connect to
+        # this program.
+        "ibazel_live_reload",
+    ],
+    templated_args = ["--bazel_patch_module_resolver"],
+)
+
+
+next(
+    name = "dev",
+    args = [
+        "dev",
+    ],
+    data = [
+        ":app",
+        "@npm//:node_modules",
+    ]
+)
